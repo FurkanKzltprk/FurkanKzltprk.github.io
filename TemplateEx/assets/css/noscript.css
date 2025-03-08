@@ -1,0 +1,26 @@
+/*
+    Solid State by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Banner */
+
+body.is-preload #banner .logo {
+    transform: none;
+    opacity: 1;
+}
+
+body.is-preload #banner h2 {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    color: #b22222; /* FireBrick - Hafif Kırmızı */
+}
+
+body.is-preload #banner p {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    color: #228b22; /* ForestGreen */
+}
