@@ -1,3 +1,3 @@
-https://furkankzltprk.github.io/Web/
+https://furkankzltprk.github.io
 
 Link
