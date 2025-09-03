@@ -7,11 +7,32 @@
 /* Banner */
 
 	#banner {
-		@include padding(10em, 0, (0, 0, _size(wrapper-edges, large) * -0.5, 0));
+		@include padding(12em, 0, (0, 0, _size(wrapper-edges, large) * -0.5, 0));
+		background: _palette(bg);
+		background-image: 
+			radial-gradient(circle at 25% 25%, rgba(0,255,136,0.1) 0%, transparent 50%),
+			radial-gradient(circle at 75% 75%, rgba(0,136,255,0.1) 0%, transparent 50%),
+			linear-gradient(135deg, rgba(10,14,26,0.95) 0%, rgba(26,31,46,0.95) 100%);
+		position: relative;
+		overflow: hidden;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2300ff8820" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+			opacity: 0.3;
+			animation: grid-move 20s linear infinite;
+		}
 
 		.inner {
 			margin: 0 auto;
 			width: _size(inner);
+			position: relative;
+			z-index: 2;
 		}
 
 		.logo {
@@ -22,10 +43,12 @@
 			@include vendor('transform', 'translateY(0)');
 			opacity: 1;
 			margin: 0 0 (_size(element-margin) * 0.65) 0;
+			text-align: center;
 
 			.icon {
 				border-radius: 100%;
-				border: solid 2px _palette(border);
+				border: solid 3px _palette(accent);
+				box-shadow: 0 0 30px rgba(0,255,136,0.3);
 				cursor: default;
 				display: inline-block;
 				font-size: 2em;
@@ -33,6 +56,12 @@
 				line-height: 2.25em;
 				text-align: center;
 				width: 2.25em;
+				@include vendor('transition', 'all 0.3s ease-in-out');
+
+				&:hover {
+					box-shadow: 0 0 50px rgba(0,255,136,0.5);
+					transform: scale(1.1);
+				}
 			}
 		}
 
@@ -46,10 +75,16 @@
 			@include vendor('transition-delay', '0.65s');
 			@include vendor('filter', 'blur(0)');
 			opacity: 1;
-			border-bottom: solid 2px _palette(border);
-			font-size: 2.25em;
+			border-bottom: solid 3px transparent;
+			border-image: _palette(gradient-primary) 1;
+			font-size: 2.5em;
 			margin-bottom: _size(element-margin) * 0.4;
 			padding-bottom: _size(element-margin) * 0.2;
+			text-align: center;
+			background: _palette(gradient-primary);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
 		}
 
 		p {
@@ -63,11 +98,23 @@
 			@include vendor('filter', 'blur(0)');
 			opacity: 1;
 			font-family: _font(family-heading);
-			font-size: 1em;
+			font-size: 1.1em;
 			font-weight: _font(weight-heading);
 			letter-spacing: _font(kern-heading);
 			line-height: 2;
 			text-transform: uppercase;
+			text-align: center;
+		}
+
+		.banner-description {
+			max-width: 600px;
+			margin: 2rem auto;
+			font-family: _font(family);
+			font-size: 1rem;
+			line-height: 1.6;
+			color: _palette(fg-light);
+			text-transform: none;
+			text-align: center;
 		}
 
 		@include breakpoint('<=large') {

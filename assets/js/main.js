@@ -25,6 +25,15 @@
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
+			
+			// Initialize typing animation
+			initTypingAnimation();
+			
+			// Initialize scroll animations
+			initScrollAnimations();
+			
+			// Initialize interactive elements
+			initInteractiveElements();
 		});
 
 	// Header.
@@ -114,12 +123,16 @@
 					event.preventDefault();
 					event.stopPropagation();
 
-					// Hide.
+					// Hide menu first
 						$menu._hide();
 
-					// Redirect.
+					// Then scroll to section after menu closes
 						window.setTimeout(function() {
-							window.location.href = href;
+							if (href.startsWith('#') && $(href).length) {
+								smoothScrollTo(href);
+							} else if (!href.startsWith('#')) {
+								window.location.href = href;
+							}
 						}, 350);
 
 				});
@@ -141,5 +154,158 @@
 						$menu._hide();
 
 			});
+
+	// Smooth scrolling for anchor links
+		$('a[href^="#"]').on('click', function(event) {
+			var target = $(this).attr('href');
+			if (target.length > 1 && $(target).length) {
+				event.preventDefault();
+				smoothScrollTo(target);
+			}
+		});
+
+	// Custom Functions
+		function smoothScrollTo(target) {
+			var $target = $(target);
+			if ($target.length) {
+				// Calculate the position
+				var targetOffset = $target.offset().top - 80;
+				
+				// Use modern smooth scroll if available, otherwise fallback to jQuery animate
+				if ('scrollBehavior' in document.documentElement.style) {
+					window.scrollTo({
+						top: targetOffset,
+						behavior: 'smooth'
+					});
+				} else {
+					$('html, body').animate({
+						scrollTop: targetOffset
+					}, 800, 'swing');
+				}
+			}
+		}
+
+		function initTypingAnimation() {
+			var $typingText = $('.typing-text');
+			if ($typingText.length) {
+				var text = $typingText.text();
+				$typingText.text('');
+				var i = 0;
+				var typeTimer = setInterval(function() {
+					if (i < text.length) {
+						$typingText.text(text.substring(0, i + 1));
+						i++;
+					} else {
+						clearInterval(typeTimer);
+					}
+				}, 100);
+			}
+		}
+
+		function initScrollAnimations() {
+			// Animate elements on scroll
+			var observerOptions = {
+				threshold: 0.1,
+				rootMargin: '0px 0px -50px 0px'
+			};
+
+			var observer = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate-in');
+					}
+				});
+			}, observerOptions);
+
+			// Observe sections and cards
+			$('.skill-category, .project-item, .wrapper').each(function() {
+				observer.observe(this);
+			});
+		}
+
+		function initInteractiveElements() {
+			// Project cards hover effects
+			$('.project-item').hover(
+				function() {
+					$(this).addClass('pulse-animation');
+				},
+				function() {
+					$(this).removeClass('pulse-animation');
+				}
+			);
+
+			// Skill tags interactive effects
+			$('.skill-tag').on('click', function() {
+				$(this).addClass('pulse-animation');
+				setTimeout(() => {
+					$(this).removeClass('pulse-animation');
+				}, 2000);
+			});
+
+			// Form enhancement
+			$('.contact-form input, .contact-form textarea').on('focus', function() {
+				$(this).parent().addClass('focused');
+			}).on('blur', function() {
+				if ($(this).val() === '') {
+					$(this).parent().removeClass('focused');
+				}
+			});
+
+			// Add floating particles effect
+			createFloatingParticles();
+		}
+
+		function createFloatingParticles() {
+			var $banner = $('#banner');
+			if ($banner.length) {
+				for (var i = 0; i < 20; i++) {
+					var $particle = $('<div class="particle"></div>');
+					$particle.css({
+						position: 'absolute',
+						width: Math.random() * 4 + 2 + 'px',
+						height: Math.random() * 4 + 2 + 'px',
+						background: 'rgba(0,255,136,0.3)',
+						borderRadius: '50%',
+						left: Math.random() * 100 + '%',
+						top: Math.random() * 100 + '%',
+						pointerEvents: 'none',
+						animation: 'float ' + (Math.random() * 10 + 10) + 's ease-in-out infinite',
+						animationDelay: Math.random() * 5 + 's'
+					});
+					$banner.append($particle);
+				}
+			}
+		}
+
+	// Add CSS animations
+		var style = document.createElement('style');
+		style.textContent = `
+			@keyframes float {
+				0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+				50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+			}
+			@keyframes grid-move {
+				0% { transform: translate(0, 0); }
+				100% { transform: translate(10px, 10px); }
+			}
+			.animate-in {
+				animation: slideInUp 0.8s ease-out;
+			}
+			@keyframes slideInUp {
+				from {
+					transform: translateY(30px);
+					opacity: 0;
+				}
+				to {
+					transform: translateY(0);
+					opacity: 1;
+				}
+			}
+			.focused label {
+				color: #00ff88 !important;
+				transform: scale(0.9);
+			}
+		`;
+		document.head.appendChild(style);
 
 })(jQuery);
