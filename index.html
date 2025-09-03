@@ -7,25 +7,126 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            .language-toggle {
+                position: absolute;
+                top: 1rem;
+                right: 8rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                z-index: 1000;
+            }
+            
+            .lang-btn {
+                background: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.7);
+                padding: 0.3rem 0.6rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 0.75rem;
+                font-weight: 500;
+                border-radius: 0.2rem;
+                min-width: 32px;
+                text-align: center;
+            }
+            
+            .lang-btn:hover {
+                border-color: rgba(255, 255, 255, 0.6);
+                color: rgba(255, 255, 255, 1);
+                transform: translateY(-1px);
+            }
+            
+            .lang-btn.active {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.8);
+                color: rgba(255, 255, 255, 1);
+            }
+            
+            .lang-separator {
+                color: rgba(255, 255, 255, 0.4);
+                font-weight: normal;
+                font-size: 0.7rem;
+            }
+            
+            @media screen and (max-width: 1280px) {
+                .language-toggle {
+                    right: 7rem;
+                }
+            }
+            
+            @media screen and (max-width: 980px) {
+                .language-toggle {
+                    right: 5.5rem;
+                    top: 0.8rem;
+                }
+                
+                .lang-btn {
+                    padding: 0.25rem 0.5rem;
+                    font-size: 0.7rem;
+                    min-width: 28px;
+                }
+                
+                .lang-separator {
+                    font-size: 0.65rem;
+                }
+            }
+            
+            @media screen and (max-width: 736px) {
+                .language-toggle {
+                    right: 4.5rem;
+                    top: 0.7rem;
+                }
+                
+                .lang-btn {
+                    padding: 0.2rem 0.4rem;
+                    font-size: 0.65rem;
+                    min-width: 24px;
+                }
+            }
+            
+            @media screen and (max-width: 480px) {
+                .language-toggle {
+                    right: 4rem;
+                    top: 0.6rem;
+                }
+                
+                .lang-btn {
+                    padding: 0.15rem 0.35rem;
+                    font-size: 0.6rem;
+                    min-width: 22px;
+                }
+                
+                .lang-separator {
+                    font-size: 0.6rem;
+                }
+            }
+        </style>
     </head>
     <body class="is-preload">
         <div id="page-wrapper">
             <header id="header" class="alt">
                 <h1><a href="index.html">Furkan Kızıltoprak</a></h1>
+                <div class="language-toggle">
+                    <button id="tr-btn" class="lang-btn active" data-lang="tr">TR</button>
+                    <span class="lang-separator">|</span>
+                    <button id="en-btn" class="lang-btn" data-lang="en">EN</button>
+                </div>
                 <nav>
-                    <a href="#menu">Menü</a>
+                    <a href="#menu" data-tr="Menü" data-en="Menu">Menü</a>
                 </nav>
             </header>
 
             <nav id="menu">
                 <div class="inner">
-                    <h2>Menü</h2>
+                    <h2 data-tr="Menü" data-en="Menu">Menü</h2>
                     <ul class="links">
-                        <li><a href="#hakkimda">Hakkımda</a></li>
-                        <li><a href="#yetenekler">Yeteneklerim</a></li>
-                        <li><a href="#projeler">Projelerim</a></li>
+                        <li><a href="#hakkimda" data-tr="Hakkımda" data-en="About Me">Hakkımda</a></li>
+                        <li><a href="#yetenekler" data-tr="Yeteneklerim" data-en="My Skills">Yeteneklerim</a></li>
+                        <li><a href="#projeler" data-tr="Projelerim" data-en="My Projects">Projelerim</a></li>
                     </ul>
-                    <a href="#" class="close">Kapat</a>
+                    <a href="#" class="close" data-tr="Kapat" data-en="Close">Kapat</a>
                 </div>
             </nav>
 
@@ -34,9 +135,9 @@
                     <div class="logo">
                         <img src="images/profile.jpeg" alt="Furkan Kızıltoprak" class="profile-image">
                     </div>
-                    <h2>Merhaba, Ben Furkan</h2>
-                    <p class="typing-text">Bilgisayar Mühendisliği Öğrencisi & Developer</p>
-                    <p class="banner-description">Mobil ve web uygulamaları, API geliştirmeleri konusunda deneyimli bir öğrenciyim. Aynı zamanda Network ve Siber Güvenlik alanlarında kendimi geliştiriyor, bu alanlarda çalışan bir developer olmaya odaklanıyorum.</p>
+                    <h2 data-tr="Merhaba, Ben Furkan" data-en="Hello, I'm Furkan">Merhaba, Ben Furkan</h2>
+                    <p class="typing-text" data-tr="Bilgisayar Mühendisliği Öğrencisi & Developer" data-en="Computer Engineering Student & Developer">Bilgisayar Mühendisliği Öğrencisi & Developer</p>
+                    <p class="banner-description" data-tr="Mobil ve web uygulamaları, API geliştirmeleri konusunda deneyimli bir öğrenciyim. Aynı zamanda Network ve Siber Güvenlik alanlarında kendimi geliştiriyor, bu alanlarda çalışan bir developer olmaya odaklanıyorum." data-en="I am a student experienced in mobile and web applications, API development. I am also improving myself in Network and Cybersecurity fields, focusing on becoming a developer working in these areas.">Mobil ve web uygulamaları, API geliştirmeleri konusunda deneyimli bir öğrenciyim. Aynı zamanda Network ve Siber Güvenlik alanlarında kendimi geliştiriyor, bu alanlarda çalışan bir developer olmaya odaklanıyorum.</p>
                     <div class="social-links">
                         <a href="https://github.com/FurkanKzltprk" target="_blank" class="social-icon">
                             <i class="icon brands fa-github"></i>
@@ -54,10 +155,10 @@
                 <section id="hakkimda" class="wrapper alt spotlight style1">
                     <div class="inner">
                         <div class="content">
-                            <h2 class="major">Hakkımda</h2>
-                            <p>Merhaba! Ben Furkan, Bilgisayar Mühendisliği öğrencisiyim. Network ve Siber Güvenlik alanlarında uzmanlaşmayı hedefleyen bir developer olarak, güvenli yazılım geliştirme ve sistem güvenliği konularında kendimi sürekli geliştiriyorum.</p>
-                            <p>Yazılım geliştirme yolculuğuma temel web teknolojileri ile başlasam da, şu anda odağım network protokolleri, güvenlik açıkları analizi, penetration testing ve secure coding practices üzerine. Aynı zamanda modern güvenlik araçları ve frameworks konusunda deneyim kazanmaya devam ediyorum.</p>
-                            <p>Gelecekte cyber security specialist olarak kariyer yapmayı hedefliyorum ve bu doğrultuda hem teorik bilgimi hem de pratik deneyimimi artırmaya odaklanıyorum.</p>
+                            <h2 class="major" data-tr="Hakkımda" data-en="About Me">Hakkımda</h2>
+                            <p data-tr="Merhaba! Ben Furkan, Bilgisayar Mühendisliği öğrencisiyim. Network ve Siber Güvenlik alanlarında uzmanlaşmayı hedefleyen bir developer olarak, güvenli yazılım geliştirme ve sistem güvenliği konularında kendimi sürekli geliştiriyorum." data-en="Hello! I'm Furkan, a Computer Engineering student. As a developer aiming to specialize in Network and Cybersecurity fields, I continuously improve myself in secure software development and system security topics.">Merhaba! Ben Furkan, Bilgisayar Mühendisliği öğrencisiyim. Network ve Siber Güvenlik alanlarında uzmanlaşmayı hedefleyen bir developer olarak, güvenli yazılım geliştirme ve sistem güvenliği konularında kendimi sürekli geliştiriyorum.</p>
+                            <p data-tr="Yazılım geliştirme yolculuğuma temel web teknolojileri ile başlasam da, şu anda odağım network protokolleri, güvenlik açıkları analizi, penetration testing ve secure coding practices üzerine. Aynı zamanda modern güvenlik araçları ve frameworks konusunda deneyim kazanmaya devam ediyorum." data-en="Although I started my software development journey with basic web technologies, my current focus is on network protocols, vulnerability analysis, penetration testing, and secure coding practices. I also continue to gain experience with modern security tools and frameworks.">Yazılım geliştirme yolculuğuma temel web teknolojileri ile başlasam da, şu anda odağım network protokolleri, güvenlik açıkları analizi, penetration testing ve secure coding practices üzerine. Aynı zamanda modern güvenlik araçları ve frameworks konusunda deneyim kazanmaya devam ediyorum.</p>
+                            <p data-tr="Gelecekte cyber security specialist olarak kariyer yapmayı hedefliyorum ve bu doğrultuda hem teorik bilgimi hem de pratik deneyimimi artırmaya odaklanıyorum." data-en="I aim to build a career as a cyber security specialist in the future, and in this direction, I focus on increasing both my theoretical knowledge and practical experience.">Gelecekte cyber security specialist olarak kariyer yapmayı hedefliyorum ve bu doğrultuda hem teorik bilgimi hem de pratik deneyimimi artırmaya odaklanıyorum.</p>
                         </div>
                     </div>
                 </section>
@@ -65,10 +166,10 @@
                 <section id="yetenekler" class="wrapper alt spotlight style2">
                     <div class="inner">
                         <div class="content">
-                            <h2 class="major">Yeteneklerim</h2>
+                            <h2 class="major" data-tr="Yeteneklerim" data-en="My Skills">Yeteneklerim</h2>
                             <div class="skills-container">
                                 <div class="skill-category">
-                                    <h3>Backend Development</h3>
+                                    <h3 data-tr="Backend Development" data-en="Backend Development">Backend Development</h3>
                                     <div class="skills">
                                         <span class="skill-tag">ASP.NET MVC</span>
                                         <span class="skill-tag">C#</span>
@@ -78,7 +179,7 @@
                                     </div>
                                 </div>
                                 <div class="skill-category">
-                                    <h3>Mobile Development</h3>
+                                    <h3 data-tr="Mobile Development" data-en="Mobile Development">Mobile Development</h3>
                                     <div class="skills">
                                         <span class="skill-tag">Android Studio</span>
                                         <span class="skill-tag">Java</span>
@@ -89,7 +190,7 @@
                                     </div>
                                 </div>
                                 <div class="skill-category">
-                                    <h3>Siber Güvenlik</h3>
+                                    <h3 data-tr="Siber Güvenlik" data-en="Cybersecurity">Siber Güvenlik</h3>
                                     <div class="skills">
                                         <span class="skill-tag">Network Security</span>
                                         <span class="skill-tag">Vulnerability Assessment</span>
@@ -99,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="skill-category">
-                                    <h3>Veritabanı & API</h3>
+                                    <h3 data-tr="Veritabanı & API" data-en="Database & API">Veritabanı & API</h3>
                                     <div class="skills">
                                         <span class="skill-tag">SQL</span>
                                         <span class="skill-tag">Database Design</span>
@@ -109,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="skill-category">
-                                    <h3>Araştırma & Geliştirme</h3>
+                                    <h3 data-tr="Araştırma & Geliştirme" data-en="Research & Development">Araştırma & Geliştirme</h3>
                                     <div class="skills">
                                         <span class="skill-tag">OCR Technology</span>
                                         <span class="skill-tag">Tesseract</span>
@@ -119,7 +220,7 @@
                                     </div>
                                 </div>
                                 <div class="skill-category">
-                                    <h3>Network Teknolojileri</h3>
+                                    <h3 data-tr="Network Teknolojileri" data-en="Network Technologies">Network Teknolojileri</h3>
                                     <div class="skills">
                                         <span class="skill-tag">TCP/IP</span>
                                         <span class="skill-tag">Network Protocols</span>
@@ -136,28 +237,28 @@
                 <section id="projeler" class="wrapper alt spotlight style3">
                     <div class="inner">
                         <div class="content">
-                            <h2 class="major">Projelerim</h2>
+                            <h2 class="major" data-tr="Projelerim" data-en="My Projects">Projelerim</h2>
                             <div class="project-grid">
                                 <div class="project-item">
                                     <div class="project-icon">
                                         <span class="icon fas fa-trophy"></span>
                                     </div>
-                                    <h3>TÜBİTAK 2209-A Braille Alfabesi Çevirici</h3>
-                                    <p>Görme engelli bireyler için geliştirdiğim, Braille alfabesini metne ve sese dönüştüren mobil uygulama. Google'ın Tesseract OCR kütüphanesi kullanılarak Braille karakterlerini tanıyor, metne çeviriyor ve Text-to-Speech (TTS) teknolojisi ile sesli okuma yapıyor. TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı kapsamında desteklenmiştir.</p>
+                                    <h3 data-tr="TÜBİTAK 2209-A Braille Alfabesi Çevirici" data-en="TUBITAK 2209-A Braille Alphabet Converter">TÜBİTAK 2209-A Braille Alfabesi Çevirici</h3>
+                                    <p data-tr="Görme engelli bireyler için geliştirdiğim, Braille alfabesini metne ve sese dönüştüren mobil uygulama. Google'ın Tesseract OCR kütüphanesi kullanılarak Braille karakterlerini tanıyor, metne çeviriyor ve Text-to-Speech (TTS) teknolojisi ile sesli okuma yapıyor. TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı kapsamında desteklenmiştir." data-en="A mobile application I developed for visually impaired individuals that converts Braille alphabet to text and speech. Using Google's Tesseract OCR library, it recognizes Braille characters, converts them to text, and performs voice reading with Text-to-Speech (TTS) technology. Supported under TUBITAK 2209-A University Students Research Projects Support Program.">Görme engelli bireyler için geliştirdiğim, Braille alfabesini metne ve sese dönüştüren mobil uygulama. Google'ın Tesseract OCR kütüphanesi kullanılarak Braille karakterlerini tanıyor, metne çeviriyor ve Text-to-Speech (TTS) teknolojisi ile sesli okuma yapıyor. TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı kapsamında desteklenmiştir.</p>
                                     <div class="project-tags">
                                         <span class="project-tag">Flutter</span>
                                         <span class="project-tag">Tesseract OCR</span>
                                         <span class="project-tag">Text-to-Speech</span>
                                         <span class="project-tag">TÜBİTAK</span>
                                     </div>
-                                    <a href="#" class="button">Detaylar</a>
+                                    <a href="#" class="button" data-tr="Detaylar" data-en="Details">Detaylar</a>
                                 </div>
                                 <div class="project-item">
                                     <div class="project-icon">
                                         <span class="icon fas fa-server"></span>
                                     </div>
-                                    <h3>REST API Projesi</h3>
-                                    <p>ASP.NET MVC kullanarak geliştirdiğim kapsamlı REST API projesi. MVC pattern implementasyonu, güvenli authentication, veritabanı yönetimi ve comprehensive endpoint'ler içeren scalable backend solution. Modern web API standartlarına uygun RESTful servis mimarisi.</p>
+                                    <h3 data-tr="REST API Projesi" data-en="REST API Project">REST API Projesi</h3>
+                                    <p data-tr="ASP.NET MVC kullanarak geliştirdiğim kapsamlı REST API projesi. MVC pattern implementasyonu, güvenli authentication, veritabanı yönetimi ve comprehensive endpoint'ler içeren scalable backend solution. Modern web API standartlarına uygun RESTful servis mimarisi." data-en="A comprehensive REST API project I developed using ASP.NET MVC. Scalable backend solution including MVC pattern implementation, secure authentication, database management, and comprehensive endpoints. RESTful service architecture compliant with modern web API standards.">ASP.NET MVC kullanarak geliştirdiğim kapsamlı REST API projesi. MVC pattern implementasyonu, güvenli authentication, veritabanı yönetimi ve comprehensive endpoint'ler içeren scalable backend solution. Modern web API standartlarına uygun RESTful servis mimarisi.</p>
                                     <div class="project-tags">
                                         <span class="project-tag">ASP.NET</span>
                                         <span class="project-tag">MVC Pattern</span>
@@ -165,14 +266,14 @@
                                         <span class="project-tag">C#</span>
                                         <span class="project-tag">Authentication</span>
                                     </div>
-                                    <a href="#" class="button">Detaylar</a>
+                                    <a href="#" class="button" data-tr="Detaylar" data-en="Details">Detaylar</a>
                                 </div>
                                 <div class="project-item">
                                     <div class="project-icon">
                                         <span class="icon fas fa-mobile-alt"></span>
                                     </div>
-                                    <h3>TODOAPI - Android Mobil & API Entegrasyonu</h3>
-                                    <p>Android Studio ve Java kullanarak geliştirdiğim, REST API ile entegre TODO uygulaması. Firebase backend, Google servisleri, anlık bildirim sistemi (Cloud Messaging) ve real-time synchronization özellikleri içeren modern mobil çözüm. Native Android development ile performans optimizasyonu.</p>
+                                    <h3 data-tr="TODOAPI - Android Mobil & API Entegrasyonu" data-en="TODOAPI - Android Mobile & API Integration">TODOAPI - Android Mobil & API Entegrasyonu</h3>
+                                    <p data-tr="Android Studio ve Java kullanarak geliştirdiğim, REST API ile entegre TODO uygulaması. Firebase backend, Google servisleri, anlık bildirim sistemi (Cloud Messaging) ve real-time synchronization özellikleri içeren modern mobil çözüm. Native Android development ile performans optimizasyonu." data-en="A TODO application integrated with REST API that I developed using Android Studio and Java. Modern mobile solution featuring Firebase backend, Google services, instant notification system (Cloud Messaging), and real-time synchronization. Performance optimization with native Android development.">Android Studio ve Java kullanarak geliştirdiğim, REST API ile entegre TODO uygulaması. Firebase backend, Google servisleri, anlık bildirim sistemi (Cloud Messaging) ve real-time synchronization özellikleri içeren modern mobil çözüm. Native Android development ile performans optimizasyonu.</p>
                                     <div class="project-tags">
                                         <span class="project-tag">Android Studio</span>
                                         <span class="project-tag">Java</span>
@@ -181,7 +282,7 @@
                                         <span class="project-tag">Google Services</span>
                                         <span class="project-tag">REST API</span>
                                     </div>
-                                    <a href="#" class="button">Detaylar</a>
+                                    <a href="#" class="button" data-tr="Detaylar" data-en="Details">Detaylar</a>
                                 </div>
                             </div>
                         </div>
@@ -197,5 +298,48 @@
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+        
+        <script>
+            // Language Toggle Functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const trBtn = document.getElementById('tr-btn');
+                const enBtn = document.getElementById('en-btn');
+                
+                // Get current language from localStorage or default to Turkish
+                let currentLang = localStorage.getItem('language') || 'tr';
+                
+                // Function to switch language
+                function switchLanguage(lang) {
+                    currentLang = lang;
+                    localStorage.setItem('language', lang);
+                    
+                    // Update button states
+                    if (lang === 'tr') {
+                        trBtn.classList.add('active');
+                        enBtn.classList.remove('active');
+                    } else {
+                        enBtn.classList.add('active');
+                        trBtn.classList.remove('active');
+                    }
+                    
+                    // Update content
+                    const elementsWithLang = document.querySelectorAll('[data-tr][data-en]');
+                    elementsWithLang.forEach(element => {
+                        if (lang === 'tr') {
+                            element.textContent = element.getAttribute('data-tr');
+                        } else {
+                            element.textContent = element.getAttribute('data-en');
+                        }
+                    });
+                }
+                
+                // Event listeners
+                trBtn.addEventListener('click', () => switchLanguage('tr'));
+                enBtn.addEventListener('click', () => switchLanguage('en'));
+                
+                // Initialize with saved language
+                switchLanguage(currentLang);
+            });
+        </script>
     </body>
 </html>
